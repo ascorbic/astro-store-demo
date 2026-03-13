@@ -1,0 +1,102 @@
+[
+  {
+    "id": "stroopwafel",
+    "name": "Stroopwafels",
+    "description": "Thin waffle cookies filled with caramel syrup, best enjoyed warm over a cup of coffee. A beloved Dutch treat since 1784.",
+    "price": 6.95,
+    "category": "food",
+    "image": "/products/stroopwafel.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "gouda",
+    "name": "Gouda Cheese (Aged)",
+    "description": "Rich, nutty aged Gouda from the famous cheese city. Matured for 18 months with deep amber color and crystalline texture.",
+    "price": 14.50,
+    "category": "food",
+    "image": "/products/gouda.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "tulip-bulbs",
+    "name": "Tulip Bulbs (Mixed)",
+    "description": "A curated selection of 20 premium tulip bulbs in red, yellow, and purple. Grown in the legendary Keukenhof region.",
+    "price": 24.00,
+    "category": "garden",
+    "image": "/products/tulip-bulbs.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "clogs",
+    "name": "Traditional Wooden Clogs",
+    "description": "Handcrafted poplar wood klompen with hand-painted floral motifs. Functional footwear that doubles as a conversation starter.",
+    "price": 45.00,
+    "category": "clothing",
+    "image": "/products/clogs.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "delft-blue",
+    "name": "Delft Blue Cat",
+    "description": "Hand-painted Delft Blue ceramic cat figurine in traditional cobalt and white. Each piece is unique, crafted by Royal Delft artisans.",
+    "price": 89.00,
+    "category": "home",
+    "image": "/products/delft-blue.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "drop",
+    "name": "Dutch Licorice (Drop)",
+    "description": "Assorted Dutch drop in sweet, salty, and double-salt varieties. The true test of whether you're ready for Dutch culture.",
+    "price": 5.50,
+    "category": "food",
+    "image": "/products/drop.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "bike-bell",
+    "name": "Amsterdam Bike Bell",
+    "description": "Classic chrome bicycle bell engraved with the Amsterdam coat of arms. Essential equipment for navigating the city's bike lanes.",
+    "price": 12.00,
+    "category": "accessories",
+    "image": "/products/bike-bell.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "hagelslag",
+    "name": "Hagelslag (Chocolate Sprinkles)",
+    "description": "Premium dark chocolate sprinkles for your morning bread. Yes, the Dutch eat sprinkles on toast for breakfast. It's magnificent.",
+    "price": 4.25,
+    "category": "food",
+    "image": "/products/hagelslag.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "windmill-model",
+    "name": "Miniature Windmill",
+    "description": "Detailed wooden replica of a traditional Dutch windmill with rotating blades. Hand-assembled from sustainably sourced timber.",
+    "price": 35.00,
+    "category": "home",
+    "image": "/products/windmill-model.jpg",
+    "inStock": false,
+    "lastModified": "2026-03-10T10:00:00Z"
+  },
+  {
+    "id": "bitterballen",
+    "name": "Bitterballen (Frozen, 24pc)",
+    "description": "Crispy fried meat ragout balls, the ultimate Dutch bar snack. Serve with mustard and cold beer for authentic gezelligheid.",
+    "price": 11.50,
+    "category": "food",
+    "image": "/products/bitterballen.jpg",
+    "inStock": true,
+    "lastModified": "2026-03-10T10:00:00Z"
+  }
+]

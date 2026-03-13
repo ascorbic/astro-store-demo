@@ -1,0 +1,116 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  image: string;
+  inStock: boolean;
+}
+
+const { id, name, price, category, image, inStock } = Astro.props;
+
+const formattedPrice = new Intl.NumberFormat('nl-NL', {
+  style: 'currency',
+  currency: 'EUR',
+}).format(price);
+---
+
+<a href={`/products/${id}`} class="card">
+  <div class="card-image">
+    <img src={image} alt={name} loading="lazy" />
+    <div class="card-overlay" />
+    {!inStock && <span class="out-of-stock">Sold out</span>}
+  </div>
+  <div class="card-body">
+    <span class="category">{category}</span>
+    <h3>{name}</h3>
+    <span class="price">{formattedPrice}</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    group: card;
+  }
+
+  .card-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    position: relative;
+    background: #18181b;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8, 8, 12, 0.4) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .out-of-stock {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(8, 8, 12, 0.8);
+    color: #fca5a5;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(8px);
+  }
+
+  .card-body {
+    padding: 1rem 0.125rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .category {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #d97706;
+  }
+
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #fafaf9;
+    transition: color 0.2s;
+  }
+
+  .card:hover h3 {
+    color: #d97706;
+  }
+
+  .price {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #a1a1aa;
+    margin-top: 0.125rem;
+  }
+</style>

@@ -1,0 +1,165 @@
+---
+import { Font } from 'astro:assets';
+
+interface Props {
+  title: string;
+  showAdmin?: boolean;
+}
+
+const { title, showAdmin = false } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | De Gracht</title>
+    <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-display" preload />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <span class="logo-text">De Gracht</span>
+          <span class="logo-tagline">Amsterdam</span>
+        </a>
+        <nav>
+          <a href="/">Shop</a>
+          {showAdmin ? (
+            <a href="/">Back to Store</a>
+          ) : (
+            <a href="/admin">Admin</a>
+          )}
+          <slot name="header-right" />
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-brand">De Gracht</span>
+        <span class="footer-sep">&mdash;</span>
+        <span>Astro 6 Demo &middot; Vue.js Amsterdam 2026</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    font-family: var(--font-body), system-ui, sans-serif;
+    background: #08080c;
+    color: #d4d4d8;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :global(h1, h2, h3, h4) {
+    font-family: var(--font-display), Georgia, serif;
+    color: #fafaf9;
+  }
+
+  header {
+    background: rgba(8, 8, 12, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fafaf9;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-tagline {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #d97706;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav a {
+    color: #a1a1aa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: #fafaf9;
+  }
+
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    min-height: calc(100vh - 4.5rem - 5rem);
+  }
+
+  footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 2rem 2.5rem;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: #3f3f46;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 600;
+    color: #52525b;
+  }
+
+  .footer-sep {
+    color: #27272a;
+  }
+</style>

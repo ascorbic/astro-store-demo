@@ -1,0 +1,146 @@
+---
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import CartIcon from "../components/CartIcon.vue";
+import { getLiveCollection } from "astro:content";
+
+const {
+	entries: products,
+	error,
+	cacheHint,
+} = await getLiveCollection("products");
+
+if (error) {
+	console.error("Failed to load products:", error.message);
+}
+
+if (cacheHint) {
+	Astro.cache.set(cacheHint);
+}
+---
+
+<Layout title="Shop">
+	<CartIcon client:load slot="header-right" />
+
+	<section class="hero">
+		<p class="hero-label">Curated Dutch Goods</p>
+		<h1>Amsterdam's<br />Finest</h1>
+		<p class="hero-sub">
+			Powered by Astro 6 live collections, route caching & Vue islands
+		</p>
+	</section>
+
+	{
+		error ? (
+			<div class="error">
+				<p>Failed to load products. Please try again.</p>
+			</div>
+		) : (
+			<div class="grid">
+				{products?.map((product) => (
+					<ProductCard
+						id={product.data.id}
+						name={product.data.name}
+						price={product.data.price}
+						category={product.data.category}
+						image={product.data.image}
+						inStock={product.data.inStock}
+					/>
+				))}
+			</div>
+		)
+	}
+
+	<div class="debug">
+		<div class="debug-inner">
+			<span class="debug-label">Cache</span>
+			<span
+				>Rendered at: <code
+					>{new Date().toLocaleTimeString("en-GB", { hour12: false })}</code
+				></span
+			>
+			<span
+				>Tags: <code>{Astro.cache.options?.tags?.join(", ") ?? "none"}</code
+				></span
+			>
+			<span>Items: <code>{products?.length ?? 0}</code></span>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 4rem 0 4.5rem;
+	}
+
+	.hero-label {
+		font-size: 0.7rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: #d97706;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero h1 {
+		font-family: var(--font-display), Georgia, serif;
+		font-size: clamp(3rem, 8vw, 5.5rem);
+		font-weight: 700;
+		line-height: 1.05;
+		color: #fafaf9;
+		letter-spacing: -0.02em;
+	}
+
+	.hero-sub {
+		color: #52525b;
+		font-size: 0.95rem;
+		margin-top: 1.25rem;
+		letter-spacing: 0.01em;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.error {
+		text-align: center;
+		padding: 4rem 0;
+		color: #f87171;
+	}
+
+	.debug {
+		margin-top: 3rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 1rem;
+	}
+
+	.debug-inner {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		font-size: 0.75rem;
+		color: #71717a;
+		flex-wrap: wrap;
+	}
+
+	.debug-label {
+		background: rgba(255, 255, 255, 0.06);
+		color: #a1a1aa;
+		padding: 0.2rem 0.5rem;
+		border-radius: 0.25rem;
+		font-weight: 600;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.debug code {
+		color: #a1a1aa;
+		font-size: 0.7rem;
+	}
+</style>
